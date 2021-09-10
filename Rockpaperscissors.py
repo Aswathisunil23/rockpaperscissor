@@ -10,37 +10,47 @@ computer_score = 0
 player = False
 
 random.seed()
+history={}
+list1=[]
+for i in range(rounds):
+    print("select option for round ",i+1)
+    player_choice = int(input('Rock: 1,Paper: 2 or Scissors: 3?  '))
+    computer_choice = random.choice(choices)
+    history[i+1]=list((choices[player_choice-1],computer_choice))
 
-
-while True:
-    player = input('Rock,Paper or Scissors? ').capitalize()
-    computer = random.choice(choices)
+round=int (input("Enter the round for which you need the information >>"))
+if(round>0 and round<=rounds):
+    player=history[round-1][0]
+    computer=history[round-1][1]
+    print("Player choice=",player)
+    print("Computer choice=",computer)
     if player == computer:
         print('TIE!')
     elif player == 'Rock':
         if computer == 'Paper':
-            print('You Lose!')
-            computer_score+=1
+            print('Computer win round ',round)
+            
         else:
-            print('You Win!')
-            player_score +=1
+            print('Player win round ',round)
+            
     elif player == 'Paper':
         if computer == 'Scissors':
-            print('You Lose!')
-            computer_score+=1
+            print('Computer win round ',round)
+            
         else:
-            print('You Win!')
-            player_score +=1
+            print('Player win round ',round)
+            
     elif player == 'Scissors':
         if computer == 'Rock':
-            print('You Lose!')
-            computer_score+=1
+            print('Computer win round ',round)
+            
         else:
-            print('You Win!')
-            player_score +=1
-    elif player == 'End':
-        print('Final Scores')
-        print('Computer Score: {}'.format(computer_score))
-        print('Player Score: {}'.format(player_score))
-        break
+            print('Player win round ',round)
+
+else:
+    print("There is no round",round)
+            
+
+
+
 
