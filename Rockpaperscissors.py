@@ -1,56 +1,35 @@
 import random
-
-
-choices = ['Rock','Paper','Scissors']
-rounds = int(input("How many rounds would you like to play?"))
-
-player_score = 0
-computer_score = 0
-
-player = False
-
-random.seed()
-history={}
-list1=[]
-for i in range(rounds):
-    print("select option for round ",i+1)
-    player_choice = int(input('Rock: 1,Paper: 2 or Scissors: 3?  '))
-    computer_choice = random.choice(choices)
-    history[i+1]=list((choices[player_choice-1],computer_choice))
-
-round=int (input("Enter the round for which you need the information >>"))
-if(round>0 and round<=rounds):
-    player=history[round-1][0]
-    computer=history[round-1][1]
-    print("Player choice=",player)
-    print("Computer choice=",computer)
-    if player == computer:
-        print('TIE!')
-    elif player == 'Rock':
-        if computer == 'Paper':
-            print('Computer win round ',round)
-            
-        else:
-            print('Player win round ',round)
-            
-    elif player == 'Paper':
-        if computer == 'Scissors':
-            print('Computer win round ',round)
-            
-        else:
-            print('Player win round ',round)
-            
-    elif player == 'Scissors':
-        if computer == 'Rock':
-            print('Computer win round ',round)
-            
-        else:
-            print('Player win round ',round)
-
+def test(a,b):
+    r=""
+    if(a==b):
+       r="Tie" 
+       return r
+    elif(a==1 and b==2) or (a==2 and b==3) or (a==3 and b==1):
+        r="LOST"
+        return r
+    elif(a==1 and b==3) or (a==2 and b==1) or (a==3 and b==2):
+        r="WON"
+        return r
+moves = {}
+print("ENTER YOUR CHOICE\n1) ROCK\n2) PAPER\n3) SCISSOR")
+for i in range (10):
+  present = []
+  user_choice = int(input("Enter your choice for round {}: ".format(i+1)))
+  comp_outcome = [1, 2, 3]
+  comp_choice = random.choice(comp_outcome)
+  pw = "Player won"
+  cw = "Computer won"
+  tie = "Tie"
+  c=test(user_choice,comp_choice)  
+  present[:3]=[user_choice,comp_choice,c]
+  moves[i+1] = present
+  
+round_val = int(input("Enter the round for which you need the instruction : "))
+if round_val>10:
+    print("Invalid input")
 else:
-    print("There is no round",round)
-            
-
-
-
-
+    print(f" \n Player's move:{moves[round_val][0]} \nComputer's move:{moves[round_val][1]}")
+    if(moves[round_val][2]=="Tie"):
+      print("Its a Tie \n")
+    else:
+      print(f"{moves[round_val][2]} Round {round_val} \n")
